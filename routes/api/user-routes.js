@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
     This time, we've provided an attributes key and instructed the query to exclude the password column.*/
     //It's in an array because if we want to exclude more than one, we can just add more.
     User.findAll({
-      attributes: { exclude: ['password'] }
+      // attributes: { exclude: ['password'] }
     })
       .then(dbUserData => res.json(dbUserData))
       .catch(err => {
@@ -67,6 +67,7 @@ router.put('/:id', (req, res) => {
     /*We pass in req.body to provide the new data we want to use in the update and req.params.id
     to indicate where exactly we want that new data to be used.*/
     User.update(req.body, {
+      individualHooks: true,
       where: {
         id: req.params.id
       }
