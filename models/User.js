@@ -3,7 +3,12 @@ const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
 // create our User model
-class User extends Model { }
+class User extends Model {
+  // set up method to run on instance data (per user) to check password
+  checkPassword(loginPw) {
+    return bcrypt.compareSync(loginPw, this.password);
+  }
+ }
 
 // define table columns and configuration
 //The .init() method we execute after is the part that actually provides context as to how those inherited methods should work.
