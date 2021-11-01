@@ -1,3 +1,7 @@
+const Sequelize = require('sequelize');
+
+require('dotenv').config();
+
 let sequelize;
 //When the app is deployed, it will have access to Heroku's process.env.JAWSDB_URL variable and use that value to connect
 if (process.env.JAWSDB_URL) {
@@ -9,3 +13,5 @@ if (process.env.JAWSDB_URL) {
     port: 3306
   });
 }
+
+module.exports = sequelize;
